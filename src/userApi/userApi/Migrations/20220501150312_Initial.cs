@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace userApi.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,6 +80,41 @@ namespace userApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "Claims",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, "For Admin", "Admin Role" },
+                    { 2, "For Editor", "Editor Role" },
+                    { 3, "For User", "User Role" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreateDate", "Email", "FirstName", "LastName", "Password", "PasswordHash", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 5, 1, 18, 3, 12, 191, DateTimeKind.Local).AddTicks(3582), "test@test.com", "testFirst", "testLast", null, "$2a$11$0ys3d2/35/oiVnmZEoX4eeJgSUUNOcdSumko46KqGMZfxAgtIMtlO", new DateTime(2022, 5, 1, 18, 3, 12, 191, DateTimeKind.Local).AddTicks(3591) },
+                    { 2, new DateTime(2022, 5, 1, 18, 3, 12, 320, DateTimeKind.Local).AddTicks(5710), "editor@test.com", "testFirst", "testLast", null, "$2a$11$BsDWuPOEEMva.zIUL2u4Ve6XeiQ3aS4DlXS2TLfeJ.2zmUiSq5.qm", new DateTime(2022, 5, 1, 18, 3, 12, 320, DateTimeKind.Local).AddTicks(5725) },
+                    { 3, new DateTime(2022, 5, 1, 18, 3, 12, 449, DateTimeKind.Local).AddTicks(9000), "admin@test.com", "testFirst", "testLast", null, "$2a$11$g/ArCySEB0zcT/qWnKed4uq8AMirl/bfBHUny46d8ic28TTMK5.6e", new DateTime(2022, 5, 1, 18, 3, 12, 449, DateTimeKind.Local).AddTicks(9018) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserClaimEntity",
+                columns: new[] { "ClaimId", "UserId", "Id" },
+                values: new object[] { 1, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "UserClaimEntity",
+                columns: new[] { "ClaimId", "UserId", "Id" },
+                values: new object[] { 2, 2, 2 });
+
+            migrationBuilder.InsertData(
+                table: "UserClaimEntity",
+                columns: new[] { "ClaimId", "UserId", "Id" },
+                values: new object[] { 3, 3, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaimEntity_ClaimId",

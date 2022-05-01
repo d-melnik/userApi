@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using userApi.Helpers;
+using userApi.DbContext.Configuration;
 using userApi.Models.Users;
 using userApi.Services.Users;
 using WebApi.Models.Users;
@@ -15,17 +13,10 @@ namespace userApi.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService userService;
-        private IMapper mapper;
-        private readonly AppSettings appSettings;
 
-        public UsersController(
-            IUserService userService,
-            IMapper mapper,
-            IOptions<AppSettings> appSettings)
+        public UsersController(IUserService userService)
         {
             this.userService = userService;
-            this.mapper = mapper;
-            this.appSettings = appSettings.Value;
         }
 
         [AllowAnonymous]
@@ -45,6 +36,7 @@ namespace userApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = ClaimConfiguration.AdminRoleName)]
         public IActionResult GetAll()
         {
             var users = userService.GetAll();
@@ -52,6 +44,7 @@ namespace userApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = ClaimConfiguration.EditorRoleName)]
         public IActionResult GetById(int id)
         {
             var user = userService.GetById(id);
@@ -59,6 +52,7 @@ namespace userApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = ClaimConfiguration.EditorRoleName)]
         public IActionResult Update(int id, UpdateRequest model)
         {
             userService.Update(id, model);
@@ -66,6 +60,7 @@ namespace userApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = ClaimConfiguration.AdminRoleName)]
         public IActionResult Delete(int id)
         {
             userService.Delete(id);

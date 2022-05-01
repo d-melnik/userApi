@@ -8,6 +8,10 @@ namespace userApi.DbContext.Configuration;
 
 public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
 {
+    public const int AdminUserId = 1;
+    public const int EditorUserId = 2;
+    public const int UserUserId = 3;
+    
     public void Configure(EntityTypeBuilder<UserEntity> builder)
     {
         builder.HasData(CreateDefaultUser());
@@ -19,30 +23,33 @@ public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
         {
             new()
             {
+                Id = AdminUserId,
                 CreateDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
                 Email = "test@test.com",
                 FirstName = "testFirst",
                 LastName = "testLast",
-                Password = "Pass!234"
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass!234")
             },
             new()
             {
+                Id = EditorUserId,
                 CreateDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
                 Email = "editor@test.com",
                 FirstName = "testFirst",
                 LastName = "testLast",
-                Password = "Pass!234"
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass!234")
             },
             new()
             {
+                Id = UserUserId,
                 CreateDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
                 Email = "admin@test.com",
                 FirstName = "testFirst",
                 LastName = "testLast",
-                Password = "Pass!234"
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass!234")
             }
         };
     }

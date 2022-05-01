@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using userApi.DbContext;
 using userApi.Entities;
 using userApi.Helpers;
@@ -28,12 +29,13 @@ namespace userApi.Services.Users
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = context.Users.SingleOrDefault(x => x.Email == model.Email);
+            var user = context.Users.Include(u=> u.UserClaim).ThenInclude(uc => uc.Claim).SingleOrDefault(x => x.Email == model.Email);
+            bool isValidPassword = BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash);
 
             // validate
-            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
+            if (user == null || !isValidPassword)
                 throw new InvalidOperationException("Username or password is incorrect");
-
+            
             // authentication successful
             var response = mapper.Map<AuthenticateResponse>(user);
             response.Token = jwtUtils.GenerateToken(user);

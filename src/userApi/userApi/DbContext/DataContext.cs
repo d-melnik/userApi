@@ -39,13 +39,12 @@ namespace userApi.DbContext
                 .WithMany(c => c.UserClaim)
                 .HasForeignKey(uc => uc.ClaimId);
             
-            //modelBuilder.ApplyConfiguration(new UserConfiguration());
-            
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ClaimConfiguration());
+            modelBuilder.ApplyConfiguration(new UserClaimConfiguration());
         }
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ClaimEntity> Claims { get; set; }
-
-       
     }
 }

@@ -3,9 +3,9 @@
 public class UserClaimEntity
 {
     public int Id { get; set; }
-    public int UserId { get; set; } //links to user id
+    public int UserId { get; set; }
     public UserEntity User { get; set; }
     
-    public int ClaimId { get; set; }//links to claim id
+    public int ClaimId { get; set; }
     public ClaimEntity Claim { get; set; }
 }

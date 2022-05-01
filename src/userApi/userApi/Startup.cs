@@ -1,16 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using userApi.DbContext;
 using userApi.Helpers;
 using userApi.Services.Users;
@@ -29,7 +26,6 @@ namespace userApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -40,12 +36,11 @@ namespace userApi
             {
                 mc.AddProfile(new AutoMapperProfile());
             });
+            AddJwtTokenAuthorization(services);
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            // configure strongly typed settings objects
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddDbContext<DataContext>();
 
             // configure DI for application services
@@ -66,12 +61,36 @@ namespace userApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+        }
+        
+        private void AddJwtTokenAuthorization(IServiceCollection services)
+        {
+            services.AddAuthentication(options =>  
+                {  
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;  
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;  
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;  
+                })  
+  
+                // Adding Jwt Bearer  
+                .AddJwtBearer(options =>  
+                {  
+                    options.SaveToken = true;  
+                    options.RequireHttpsMetadata = false;  
+                    options.TokenValidationParameters = new TokenValidationParameters()  
+                    {  
+                        ValidateIssuer = false,  
+                        ValidateAudience = false,  
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))  
+                    };  
+                }); 
         }
     }
 }

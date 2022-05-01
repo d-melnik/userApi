@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using userApi.Entities;
 
@@ -12,68 +13,42 @@ namespace userApi.Helpers
     public interface IJwtUtils
     {
         public string GenerateToken(UserEntity user);
-        public int? ValidateToken(string token);
-    }
-    
-    public class AppSettings
-    {
-        public string Secret { get; set; }
     }
 
     public class JwtUtils : IJwtUtils
     {
-        private readonly AppSettings appSettings;
+        private IConfiguration Configuration { get; }
 
-        public JwtUtils(IOptions<AppSettings> appSettings)
+        public JwtUtils(IConfiguration configuration)
         {
-            this.appSettings = appSettings.Value;
+            Configuration = configuration;
         }
 
         public string GenerateToken(UserEntity user)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(Configuration["JWT:Secret"]);
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(BuildUserClaims(user)),
+                
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature)
             };
+            
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
 
-        public int? ValidateToken(string token)
+        private IEnumerable<Claim> BuildUserClaims(UserEntity user)
         {
-            if (token == null) 
-                return null;
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            try
-            {
-                tokenHandler.ValidateToken(token, new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
-                    ClockSkew = TimeSpan.Zero
-                }, out SecurityToken validatedToken);
-
-                var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
-
-                // return user id from JWT token if validation successful
-                return userId;
-            }
-            catch
-            {
-                // return null if validation fails
-                return null;
-            }
+            IList<Claim> userClaims = user.UserClaim.Select(c => new Claim(ClaimTypes.Role, c.Claim.Name)).ToList();
+            userClaims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email));
+            userClaims.Add(new Claim(ClaimTypes.Email, user.Email));
+            return userClaims;
         }
     }
 }

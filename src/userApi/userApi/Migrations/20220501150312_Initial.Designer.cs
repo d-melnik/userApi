@@ -11,8 +11,8 @@ using userApi.DbContext;
 namespace userApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220422185256_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220501150312_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,26 @@ namespace userApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Claims");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "For Admin",
+                            Name = "Admin Role"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "For Editor",
+                            Name = "Editor Role"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "For User",
+                            Name = "User Role"
+                        });
                 });
 
             modelBuilder.Entity("userApi.Entities.UserClaimEntity", b =>
@@ -54,6 +74,26 @@ namespace userApi.Migrations
                     b.HasIndex("ClaimId");
 
                     b.ToTable("UserClaimEntity");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            ClaimId = 1,
+                            Id = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            ClaimId = 2,
+                            Id = 2
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            ClaimId = 3,
+                            Id = 3
+                        });
                 });
 
             modelBuilder.Entity("userApi.Entities.UserEntity", b =>
@@ -86,6 +126,38 @@ namespace userApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreateDate = new DateTime(2022, 5, 1, 18, 3, 12, 191, DateTimeKind.Local).AddTicks(3582),
+                            Email = "test@test.com",
+                            FirstName = "testFirst",
+                            LastName = "testLast",
+                            PasswordHash = "$2a$11$0ys3d2/35/oiVnmZEoX4eeJgSUUNOcdSumko46KqGMZfxAgtIMtlO",
+                            UpdateDate = new DateTime(2022, 5, 1, 18, 3, 12, 191, DateTimeKind.Local).AddTicks(3591)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreateDate = new DateTime(2022, 5, 1, 18, 3, 12, 320, DateTimeKind.Local).AddTicks(5710),
+                            Email = "editor@test.com",
+                            FirstName = "testFirst",
+                            LastName = "testLast",
+                            PasswordHash = "$2a$11$BsDWuPOEEMva.zIUL2u4Ve6XeiQ3aS4DlXS2TLfeJ.2zmUiSq5.qm",
+                            UpdateDate = new DateTime(2022, 5, 1, 18, 3, 12, 320, DateTimeKind.Local).AddTicks(5725)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateDate = new DateTime(2022, 5, 1, 18, 3, 12, 449, DateTimeKind.Local).AddTicks(9000),
+                            Email = "admin@test.com",
+                            FirstName = "testFirst",
+                            LastName = "testLast",
+                            PasswordHash = "$2a$11$g/ArCySEB0zcT/qWnKed4uq8AMirl/bfBHUny46d8ic28TTMK5.6e",
+                            UpdateDate = new DateTime(2022, 5, 1, 18, 3, 12, 449, DateTimeKind.Local).AddTicks(9018)
+                        });
                 });
 
             modelBuilder.Entity("userApi.Entities.UserClaimEntity", b =>
