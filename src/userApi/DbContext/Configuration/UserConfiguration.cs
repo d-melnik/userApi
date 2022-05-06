@@ -26,7 +26,7 @@ public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
                 Id = AdminUserId,
                 CreateDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
-                Email = "test@test.com",
+                Email = "admin@test.com",
                 FirstName = "testFirst",
                 LastName = "testLast",
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass!234")
@@ -46,7 +46,7 @@ public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
                 Id = UserUserId,
                 CreateDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
-                Email = "admin@test.com",
+                Email = "user@test.com",
                 FirstName = "testFirst",
                 LastName = "testLast",
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass!234")

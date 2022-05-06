@@ -11,7 +11,7 @@ using userApi.DbContext;
 namespace userApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220501150312_Initial")]
+    [Migration("20220506120645_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,32 +131,32 @@ namespace userApi.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2022, 5, 1, 18, 3, 12, 191, DateTimeKind.Local).AddTicks(3582),
-                            Email = "test@test.com",
+                            CreateDate = new DateTime(2022, 5, 6, 15, 6, 45, 212, DateTimeKind.Local).AddTicks(4288),
+                            Email = "admin@test.com",
                             FirstName = "testFirst",
                             LastName = "testLast",
-                            PasswordHash = "$2a$11$0ys3d2/35/oiVnmZEoX4eeJgSUUNOcdSumko46KqGMZfxAgtIMtlO",
-                            UpdateDate = new DateTime(2022, 5, 1, 18, 3, 12, 191, DateTimeKind.Local).AddTicks(3591)
+                            PasswordHash = "$2a$11$YrnaAUDjx4TkwciU/d/JP.wOls9EFNicOqSE79M5FDa9dYM6YkGNi",
+                            UpdateDate = new DateTime(2022, 5, 6, 15, 6, 45, 212, DateTimeKind.Local).AddTicks(4295)
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2022, 5, 1, 18, 3, 12, 320, DateTimeKind.Local).AddTicks(5710),
+                            CreateDate = new DateTime(2022, 5, 6, 15, 6, 45, 343, DateTimeKind.Local).AddTicks(5242),
                             Email = "editor@test.com",
                             FirstName = "testFirst",
                             LastName = "testLast",
-                            PasswordHash = "$2a$11$BsDWuPOEEMva.zIUL2u4Ve6XeiQ3aS4DlXS2TLfeJ.2zmUiSq5.qm",
-                            UpdateDate = new DateTime(2022, 5, 1, 18, 3, 12, 320, DateTimeKind.Local).AddTicks(5725)
+                            PasswordHash = "$2a$11$RjqZ2TGOYk1Ub.tOobkVmeTzjQOFYs448FiO/n5E0PS0pHWOfuxuG",
+                            UpdateDate = new DateTime(2022, 5, 6, 15, 6, 45, 343, DateTimeKind.Local).AddTicks(5253)
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2022, 5, 1, 18, 3, 12, 449, DateTimeKind.Local).AddTicks(9000),
-                            Email = "admin@test.com",
+                            CreateDate = new DateTime(2022, 5, 6, 15, 6, 45, 473, DateTimeKind.Local).AddTicks(4918),
+                            Email = "user@test.com",
                             FirstName = "testFirst",
                             LastName = "testLast",
-                            PasswordHash = "$2a$11$g/ArCySEB0zcT/qWnKed4uq8AMirl/bfBHUny46d8ic28TTMK5.6e",
-                            UpdateDate = new DateTime(2022, 5, 1, 18, 3, 12, 449, DateTimeKind.Local).AddTicks(9018)
+                            PasswordHash = "$2a$11$/vMfrmY8KbNg4WjYtiXFju1atAJwt.b7mdRzcqExEzPUoaiCQmaDi",
+                            UpdateDate = new DateTime(2022, 5, 6, 15, 6, 45, 473, DateTimeKind.Local).AddTicks(4928)
                         });
                 });
 

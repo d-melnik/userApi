@@ -96,9 +96,9 @@ namespace userApi.Migrations
                 columns: new[] { "Id", "CreateDate", "Email", "FirstName", "LastName", "Password", "PasswordHash", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 5, 1, 18, 3, 12, 191, DateTimeKind.Local).AddTicks(3582), "test@test.com", "testFirst", "testLast", null, "$2a$11$0ys3d2/35/oiVnmZEoX4eeJgSUUNOcdSumko46KqGMZfxAgtIMtlO", new DateTime(2022, 5, 1, 18, 3, 12, 191, DateTimeKind.Local).AddTicks(3591) },
-                    { 2, new DateTime(2022, 5, 1, 18, 3, 12, 320, DateTimeKind.Local).AddTicks(5710), "editor@test.com", "testFirst", "testLast", null, "$2a$11$BsDWuPOEEMva.zIUL2u4Ve6XeiQ3aS4DlXS2TLfeJ.2zmUiSq5.qm", new DateTime(2022, 5, 1, 18, 3, 12, 320, DateTimeKind.Local).AddTicks(5725) },
-                    { 3, new DateTime(2022, 5, 1, 18, 3, 12, 449, DateTimeKind.Local).AddTicks(9000), "admin@test.com", "testFirst", "testLast", null, "$2a$11$g/ArCySEB0zcT/qWnKed4uq8AMirl/bfBHUny46d8ic28TTMK5.6e", new DateTime(2022, 5, 1, 18, 3, 12, 449, DateTimeKind.Local).AddTicks(9018) }
+                    { 1, new DateTime(2022, 5, 6, 15, 6, 45, 212, DateTimeKind.Local).AddTicks(4288), "admin@test.com", "testFirst", "testLast", null, "$2a$11$YrnaAUDjx4TkwciU/d/JP.wOls9EFNicOqSE79M5FDa9dYM6YkGNi", new DateTime(2022, 5, 6, 15, 6, 45, 212, DateTimeKind.Local).AddTicks(4295) },
+                    { 2, new DateTime(2022, 5, 6, 15, 6, 45, 343, DateTimeKind.Local).AddTicks(5242), "editor@test.com", "testFirst", "testLast", null, "$2a$11$RjqZ2TGOYk1Ub.tOobkVmeTzjQOFYs448FiO/n5E0PS0pHWOfuxuG", new DateTime(2022, 5, 6, 15, 6, 45, 343, DateTimeKind.Local).AddTicks(5253) },
+                    { 3, new DateTime(2022, 5, 6, 15, 6, 45, 473, DateTimeKind.Local).AddTicks(4918), "user@test.com", "testFirst", "testLast", null, "$2a$11$/vMfrmY8KbNg4WjYtiXFju1atAJwt.b7mdRzcqExEzPUoaiCQmaDi", new DateTime(2022, 5, 6, 15, 6, 45, 473, DateTimeKind.Local).AddTicks(4928) }
                 });
 
             migrationBuilder.InsertData(

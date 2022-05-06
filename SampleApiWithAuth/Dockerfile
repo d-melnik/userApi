@@ -6,16 +6,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/userApi/userApi.csproj", "src/userApi/"]
-RUN dotnet restore "src/userApi/userApi.csproj"
+COPY ["SampleApiWithAuth/SampleApiWithAuth.csproj", "SampleApiWithAuth/"]
+RUN dotnet restore "SampleApiWithAuth/SampleApiWithAuth.csproj"
 COPY . .
-WORKDIR "/src/src/userApi"
-RUN dotnet build "userApi.csproj" -c Release -o /app/build
+WORKDIR "/src/SampleApiWithAuth"
+RUN dotnet build "SampleApiWithAuth.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "userApi.csproj" -c Release -o /app/publish
+RUN dotnet publish "SampleApiWithAuth.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "userApi.dll"]
+ENTRYPOINT ["dotnet", "SampleApiWithAuth.dll"]

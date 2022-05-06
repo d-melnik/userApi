@@ -20,19 +20,19 @@ public class UserClaimConfiguration : IEntityTypeConfiguration<UserClaimEntity>
             {
                 Id = 1,
                 ClaimId = ClaimConfiguration.AdminClaimId,
-                UserId = ClaimConfiguration.AdminClaimId
+                UserId = UserConfiguration.AdminUserId
             },
             new()
             {
                 Id = 2,
                 ClaimId = ClaimConfiguration.EditorClaimId,
-                UserId = ClaimConfiguration.EditorClaimId
+                UserId = UserConfiguration.EditorUserId
             },
             new()
             {
                 Id = 3,
                 ClaimId = ClaimConfiguration.UserClaimId,
-                UserId = ClaimConfiguration.UserClaimId
+                UserId = UserConfiguration.UserUserId
             }
         };
     }
