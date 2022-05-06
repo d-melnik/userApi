@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using userApi.DbContext;
 using userApi.Helpers;
+using userApi.Services.Claims;
 using userApi.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,6 +63,7 @@ builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IJwtUtils, JwtUtils>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IClaimsService, ClaimsService>();
 
 var app = builder.Build();
 
