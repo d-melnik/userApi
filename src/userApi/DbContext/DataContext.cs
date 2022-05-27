@@ -10,18 +10,10 @@ namespace userApi.DbContext
     public class DataContext : Microsoft.EntityFrameworkCore.DbContext
     {
         private readonly IConfiguration configuration;
-
-        public DataContext(IConfiguration configuration)
+        
+        public DataContext(IConfiguration configuration, DbContextOptions options) : base(options)
         {
             this.configuration = configuration;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            Version mySqlVersion = GetMySqlVersionFromConfigHelper.GetVersion(configuration.GetConnectionString("Version"));
-            // connect to sql server database
-            options.UseMySql(configuration.GetConnectionString("WebApiDatabase"), 
-                new MySqlServerVersion(mySqlVersion));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

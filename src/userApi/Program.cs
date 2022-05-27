@@ -1,8 +1,11 @@
+using System;
 using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
@@ -57,7 +60,13 @@ builder.Services.AddAuthorization(options =>
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-builder.Services.AddDbContext<DataContext>();
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    Version mySqlVersion = GetMySqlVersionFromConfigHelper.GetVersion(builder.Configuration.GetConnectionString("Version"));
+    // connect to sql server database
+    options.UseMySql(builder.Configuration.GetConnectionString("WebApiDatabase"), 
+        new MySqlServerVersion(mySqlVersion));
+});
 
 // configure DI for application services
 builder.Services.AddScoped<IUserService, UserService>();

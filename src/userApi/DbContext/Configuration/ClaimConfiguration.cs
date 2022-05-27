@@ -18,7 +18,7 @@ public class ClaimConfiguration: IEntityTypeConfiguration<ClaimEntity>
         builder.HasData(CreateDefaultClaims());
     }
 
-    private IList<ClaimEntity> CreateDefaultClaims()
+    public static IList<ClaimEntity> CreateDefaultClaims()
     {
         return new List<ClaimEntity>()
         {

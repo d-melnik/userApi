@@ -1,5 +1,6 @@
 using AutoMapper;
 using userApi.Entities;
+using userApi.Models.Roles;
 using userApi.Models.Users;
 using WebApi.Models.Users;
 
@@ -27,6 +28,8 @@ namespace userApi.Helpers
                         return true;
                     }
                 ));
+            
+            CreateMap<ChangeClaimRequest, ClaimEntity>();
         }
     }
 }

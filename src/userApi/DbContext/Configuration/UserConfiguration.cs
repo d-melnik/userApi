@@ -11,13 +11,15 @@ public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
     public const int AdminUserId = 1;
     public const int EditorUserId = 2;
     public const int UserUserId = 3;
+
+    public const string defaultPwd = "Pass!234";
     
     public void Configure(EntityTypeBuilder<UserEntity> builder)
     {
-        builder.HasData(CreateDefaultUser());
+        builder.HasData(CreateDefaultUsers());
     }
 
-    private IList<UserEntity> CreateDefaultUser()
+    public static IList<UserEntity> CreateDefaultUsers()
     {
         return new List<UserEntity>()
         {
@@ -29,7 +31,7 @@ public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
                 Email = "admin@test.com",
                 FirstName = "testFirst",
                 LastName = "testLast",
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass!234")
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(defaultPwd)
             },
             new()
             {
@@ -39,7 +41,7 @@ public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
                 Email = "editor@test.com",
                 FirstName = "testFirst",
                 LastName = "testLast",
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass!234")
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(defaultPwd)
             },
             new()
             {
@@ -49,7 +51,7 @@ public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
                 Email = "user@test.com",
                 FirstName = "testFirst",
                 LastName = "testLast",
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass!234")
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(defaultPwd)
             }
         };
     }

@@ -29,13 +29,14 @@ namespace userApi.Services.Users
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = context.Users.Include(u=> u.UserClaim).ThenInclude(uc => uc.Claim).SingleOrDefault(x => x.Email == model.Email);
-            bool isValidPassword = BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash);
+            var user = context.Users.Include(u => u.UserClaim).ThenInclude(uc => uc.Claim)
+                .SingleOrDefault(x => x.Email == model.Email);
+            bool IsValidPassword () => BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash);
 
             // validate
-            if (user == null || !isValidPassword)
+            if (user == null || IsValidPassword() == false)
                 throw new InvalidOperationException("Username or password is incorrect");
-            
+
             // authentication successful
             var response = mapper.Map<AuthenticateResponse>(user);
             response.Token = jwtUtils.GenerateToken(user);
@@ -49,7 +50,7 @@ namespace userApi.Services.Users
 
         public UserEntity GetById(int id)
         {
-            return getUser(id);
+            return GetUser(id);
         }
 
         public void Register(RegisterRequest model)
@@ -61,6 +62,11 @@ namespace userApi.Services.Users
             // map model to new user object
             var user = mapper.Map<UserEntity>(model);
 
+            if (string.IsNullOrEmpty(model.Password))
+            {
+                throw new ArgumentException("Password should not be null or empty");
+            }
+
             // hash password
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
 
@@ -71,11 +77,13 @@ namespace userApi.Services.Users
 
         public void Update(int id, UpdateRequest model)
         {
-            var user = getUser(id);
+            var user = GetUser(id);
 
             // validate
-            if (model.Username != user.Email && context.Users.Any(x => x.Email == model.Username))
-                throw new InvalidOperationException("Username '" + model.Username + "' is already taken");
+            if (model.Email != user.Email && context.Users.Any(x => x.Email == model.Email))
+            {
+                throw new InvalidOperationException("Username '" + model.Email + "' is already taken");
+            }
 
             // hash password if it was entered
             if (!string.IsNullOrEmpty(model.Password))
@@ -89,17 +97,20 @@ namespace userApi.Services.Users
 
         public void Delete(int id)
         {
-            var user = getUser(id);
+            var user = GetUser(id);
             context.Users.Remove(user);
             context.SaveChanges();
         }
 
         // helper methods
 
-        private UserEntity getUser(int id)
+        private UserEntity GetUser(int id)
         {
             var user = context.Users.Find(id);
-            if (user == null) throw new KeyNotFoundException("User not found");
+            if (user == null)
+            {
+                throw new KeyNotFoundException("User not found");
+            }
             return user;
         }
     }

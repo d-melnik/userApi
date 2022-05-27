@@ -12,7 +12,7 @@ public class UserClaimConfiguration : IEntityTypeConfiguration<UserClaimEntity>
         builder.HasData(CreateDefaultUserClaims());
     }
 
-    private IList<UserClaimEntity> CreateDefaultUserClaims()
+    public static IList<UserClaimEntity> CreateDefaultUserClaims()
     {
         return new List<UserClaimEntity>()
         {
