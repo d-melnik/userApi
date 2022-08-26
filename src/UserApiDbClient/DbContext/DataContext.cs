@@ -34,7 +34,7 @@ namespace UserApiDbClient.DbContext
             modelBuilder.ApplyConfiguration(new UserClaimConfiguration());
         }
 
-        public DbSet<UserEntity> Users { get; set; }
-        public DbSet<ClaimEntity> Claims { get; set; }
+        public DbSet<UserEntity>? Users { get; set; }
+        public DbSet<ClaimEntity>? Claims { get; set; }
     }
 }

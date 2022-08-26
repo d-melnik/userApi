@@ -12,7 +12,7 @@ using Xunit;
 
 namespace userApiTests.Services;
 
-
+[Collection("Sequential")]
 public class UserServiceTest : BaseTest
 {
     private readonly UserService userService;

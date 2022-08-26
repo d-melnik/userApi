@@ -18,6 +18,7 @@ using Xunit;
 
 namespace userApiTests.Controllers;
 
+[Collection("Sequential")]
 public class ClaimsControllerTest : BaseTest
 {
     private readonly ClaimsController claimsController;

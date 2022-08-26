@@ -14,6 +14,7 @@ using Xunit;
 
 namespace userApiTests.Services;
 
+[Collection("Sequential")]
 public class ClaimServiceTest : BaseTest
 {
     private readonly ClaimsService claimsService;
