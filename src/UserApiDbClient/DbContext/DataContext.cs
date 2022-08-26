@@ -1,9 +1,7 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using userApi.DbContext.Configuration;
 using userApi.Entities;
-using userApi.Helpers;
 
 namespace userApi.DbContext
 {
