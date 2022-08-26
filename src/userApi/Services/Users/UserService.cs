@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using userApi.DbContext;
-using userApi.Entities;
 using userApi.Helpers;
 using userApi.Models.Users;
+using UserApiDbClient.DbContext;
+using UserApiDbClient.Entities;
 using WebApi.Models.Users;
 
 namespace userApi.Services.Users
@@ -69,6 +69,8 @@ namespace userApi.Services.Users
 
             // hash password
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
+            user.CreateDate = DateTime.UtcNow;
+            user.UpdateDate = DateTime.UtcNow;
 
             // save user
             context.Users.Add(user);
@@ -91,6 +93,7 @@ namespace userApi.Services.Users
 
             // copy model to user and save
             mapper.Map(model, user);
+            user.UpdateDate = DateTime.UtcNow;
             context.Users.Update(user);
             context.SaveChanges();
         }

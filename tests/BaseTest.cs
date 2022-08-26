@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using userApi.DbContext;
-using userApi.DbContext.Configuration;
 using userApi.Helpers;
+using UserApiDbClient.DbContext;
+using UserApiDbClient.DbContext.Configuration;
 
 namespace userApiTests;
 

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using userApi.Entities;
+using UserApiDbClient.Entities;
 
-namespace userApi.DbContext.Configuration;
+namespace UserApiDbClient.DbContext.Configuration;
 
 public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
 {

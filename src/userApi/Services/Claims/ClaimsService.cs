@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using userApi.DbContext;
-using userApi.Entities;
-using userApi.Models.Roles; 
+using userApi.Models.Roles;
+using UserApiDbClient.DbContext;
+using UserApiDbClient.Entities;
 
 namespace userApi.Services.Claims
 {

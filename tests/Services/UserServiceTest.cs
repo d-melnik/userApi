@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using KellermanSoftware.CompareNetObjects;
-using userApi.DbContext.Configuration;
-using userApi.Entities;
 using userApi.Helpers;
 using userApi.Models.Users;
 using userApi.Services.Users;
+using UserApiDbClient.DbContext.Configuration;
+using UserApiDbClient.Entities;
 using WebApi.Models.Users;
 using Xunit;
 

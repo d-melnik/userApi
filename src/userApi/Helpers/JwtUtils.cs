@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using userApi.Entities;
+using UserApiDbClient.Entities;
 
 namespace userApi.Helpers
 {

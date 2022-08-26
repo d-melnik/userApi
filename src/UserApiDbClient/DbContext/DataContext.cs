@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using userApi.DbContext.Configuration;
-using userApi.Entities;
+using UserApiDbClient.DbContext.Configuration;
+using UserApiDbClient.Entities;
 
-namespace userApi.DbContext
+namespace UserApiDbClient.DbContext
 {
     public class DataContext : Microsoft.EntityFrameworkCore.DbContext
     {

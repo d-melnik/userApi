@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using userApi.Entities;
 using userApi.Models.Users;
+using UserApiDbClient.Entities;
 using WebApi.Models.Users;
 
 namespace userApi.Services.Users;

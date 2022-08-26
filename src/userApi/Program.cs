@@ -10,10 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using userApi.DbContext;
 using userApi.Helpers;
 using userApi.Services.Claims;
 using userApi.Services.Users;
+using UserApiDbClient.DbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
