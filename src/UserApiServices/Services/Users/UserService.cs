@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using userApi.Helpers;
-using userApi.Models.Users;
 using UserApiDbClient.DbContext;
 using UserApiDbClient.Entities;
-using WebApi.Models.Users;
+using UserApiServices.Helpers;
+using UserApiServices.Models.Users;
 
-namespace userApi.Services.Users
+namespace UserApiServices.Services.Users
 {
     public class UserService : IUserService
     {

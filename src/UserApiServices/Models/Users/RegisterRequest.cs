@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace userApi.Models.Users
+namespace UserApiServices.Models.Users
 {
     public class RegisterRequest
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace userApi.Helpers;
+﻿namespace UserApiServices.Helpers;
 
 public static class GetMySqlVersionFromConfigHelper
 {

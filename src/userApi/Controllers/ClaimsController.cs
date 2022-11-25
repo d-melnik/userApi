@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using userApi.Models.Roles;
-using userApi.Services.Claims;
 using UserApiDbClient.DbContext.Configuration;
 using UserApiDbClient.Entities;
+using UserApiServices.Models.Roles;
+using UserApiServices.Services.Claims;
 
 namespace userApi.Controllers;
 

@@ -1,4 +1,4 @@
-namespace userApi.Models.Users
+namespace UserApiServices.Models.Users
 {
     public class AuthenticateResponse
     {

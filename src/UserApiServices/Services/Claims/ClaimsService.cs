@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
-using userApi.Models.Roles;
 using UserApiDbClient.DbContext;
 using UserApiDbClient.Entities;
+using UserApiServices.Models.Roles;
 
-namespace userApi.Services.Claims
+namespace UserApiServices.Services.Claims
 {
     public class ClaimsService : IClaimsService
     {

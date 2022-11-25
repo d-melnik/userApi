@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using userApi.Models.Roles;
-using UserApiDbClient.Entities;
-using WebApi.Models.Users;
+﻿using UserApiDbClient.Entities;
+using UserApiServices.Models.Roles;
 
-namespace userApi.Services.Claims;
+namespace UserApiServices.Services.Claims;
 
 public interface IClaimsService
 {

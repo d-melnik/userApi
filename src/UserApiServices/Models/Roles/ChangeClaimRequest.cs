@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace userApi.Models.Roles
+namespace UserApiServices.Models.Roles
 {
     public class ChangeClaimRequest
     {

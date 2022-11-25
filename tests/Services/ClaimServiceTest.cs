@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using KellermanSoftware.CompareNetObjects;
-using userApi.Helpers;
-using userApi.Models.Roles;
-using userApi.Models.Users;
-using userApi.Services.Claims;
-using userApi.Services.Users;
 using UserApiDbClient.DbContext.Configuration;
 using UserApiDbClient.Entities;
-using WebApi.Models.Users;
+using UserApiServices.Models.Roles;
+using UserApiServices.Services.Claims;
 using Xunit;
 
 namespace userApiTests.Services;

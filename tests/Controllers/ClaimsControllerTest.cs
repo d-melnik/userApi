@@ -6,14 +6,10 @@ using KellermanSoftware.CompareNetObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
 using userApi.Controllers;
-using userApi.Helpers;
-using userApi.Models.Roles;
-using userApi.Models.Users;
-using userApi.Services.Claims;
-using userApi.Services.Users;
 using UserApiDbClient.DbContext.Configuration;
 using UserApiDbClient.Entities;
-using WebApi.Models.Users;
+using UserApiServices.Models.Roles;
+using UserApiServices.Services.Claims;
 using Xunit;
 
 namespace userApiTests.Controllers;

@@ -1,10 +1,9 @@
 using AutoMapper;
-using userApi.Models.Roles;
-using userApi.Models.Users;
 using UserApiDbClient.Entities;
-using WebApi.Models.Users;
+using UserApiServices.Models.Roles;
+using UserApiServices.Models.Users;
 
-namespace userApi.Helpers
+namespace UserApiServices.Helpers
 {
     public class AutoMapperProfile : Profile
     {

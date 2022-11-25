@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using userApi.Models.Users;
-using UserApiDbClient.Entities;
-using WebApi.Models.Users;
+﻿using UserApiDbClient.Entities;
+using UserApiServices.Models.Users;
 
-namespace userApi.Services.Users;
+namespace UserApiServices.Services.Users;
 
 public interface IUserService
 {

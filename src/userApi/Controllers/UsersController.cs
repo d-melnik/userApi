@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using userApi.Models.Users;
-using userApi.Services.Users;
 using UserApiDbClient.DbContext.Configuration;
-using WebApi.Models.Users;
+using UserApiServices.Models.Users;
+using UserApiServices.Services.Users;
 
 namespace userApi.Controllers
 {
